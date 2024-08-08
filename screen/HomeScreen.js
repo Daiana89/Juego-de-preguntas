@@ -1,23 +1,69 @@
-import React from "react";
+import React, {useState} from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,TouchableOpacity ,Image } from 'react-native';
+import {SafeAreaView, TextInput} from 'react-native';
 
+
+import {Alert, Modal, Pressable} from 'react-native';
 
 export default function Home( ) {
-  let cant = prompt('Cantidad de jugadores? ');
+  //MODAL
+  const [modalVisible, setModalVisible] = useState(false);
+  //TEXT INPUT
+  const [text, onChangeText] = React.useState('Useless Text');
+  const [number, onChangeNumber] = React.useState('');
+
     return (
         <View style={styles.container}>
         <Image source={require('../assets/logo.png')} style={styles.logo}/>
         <Text style={styles.text}>SIN PALABRAS</Text>
         <StatusBar style="auto" />
         
-        <TouchableOpacity style={styles.TouchableHighlight} onPress={() => alert(cant)}>
+        <TouchableOpacity style={styles.TouchableHighlight} title="Show" onPress={() => setModalVisible(true)} >
           <Text style={styles.textBotton}>COMENZAR A JUGAR</Text>
         </TouchableOpacity > 
         <TouchableOpacity  style={styles.TouchableHighlight}>
           <Text style={styles.textBotton}>APRENDER LAS REGLAS</Text>
         
         </TouchableOpacity > 
+
+        {/* MODAL */}
+        <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onShow={()=>console.log('show')} 
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+         
+        }}>
+        <View style={style.centeredView}>
+          <View style={style.modalView}>
+            <Text style={style.modalText}>¡Parhaaa!</Text>
+            <Text style={style.modalText}>¿Cuantos players son?</Text>
+
+            <SafeAreaView>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={onChangeNumber}
+                  value={number}
+                  placeholder="ingrese el number"
+                  keyboardType="numeric"
+                />
+            </SafeAreaView>
+
+            <Pressable
+              style={[style.button, style.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={style.textStyle}>Listo</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+     
+
+      {/* THE END MODAL */}
     
 
            
@@ -63,9 +109,63 @@ export default function Home( ) {
       height:150,
       
     },
-  
+    input: {
+      height: 40,
+      width:140,
+      margin: 12,
+      borderWidth: 1,
+      padding: 10,
+      borderRadius:20,
+    },
+    
   
   });
+
+  //MODAL
+
+  const style = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 22,
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: 'white',
+      borderRadius: 20,
+      padding: 95,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5,
+    },
+    button: {
+      borderRadius: 20,
+      padding: 10,
+      elevation: 2,
+    },
+   
+    buttonClose: {
+      backgroundColor: 'black',
+      width:100,
+    },
+    textStyle: {
+      color: 'white',
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: 'center',
+    },
+  });
+  //THE END MODAL
   
   
   
