@@ -4,17 +4,19 @@ import { StyleSheet, Text, View ,TouchableOpacity ,Image } from 'react-native';
 
 
 export default function Home( ) {
+  let cant = prompt('Cantidad de jugadores? ');
     return (
         <View style={styles.container}>
         <Image source={require('../assets/logo.png')} style={styles.logo}/>
         <Text style={styles.text}>SIN PALABRAS</Text>
         <StatusBar style="auto" />
         
-        <TouchableOpacity style={styles.TouchableHighlight} onPress={() => alert('cantidad de jugadores?: ')}>
+        <TouchableOpacity style={styles.TouchableHighlight} onPress={() => alert(cant)}>
           <Text style={styles.textBotton}>COMENZAR A JUGAR</Text>
         </TouchableOpacity > 
         <TouchableOpacity  style={styles.TouchableHighlight}>
           <Text style={styles.textBotton}>APRENDER LAS REGLAS</Text>
+        
         </TouchableOpacity > 
     
 
