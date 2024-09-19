@@ -4,7 +4,9 @@ import { NavigationContainer } from "@react-navigation/native";
 
 //screen
 import HomeScreen from './screen/HomeScreen';
-import PlayerScreen from './screen/PlayerScreen';
+import DetailsScreen from './screen/DetailsScreen';
+import GameScreen from './screen/GameScreen';
+import { UserProvider } from './UserContext'; 
 
 
 
@@ -19,7 +21,8 @@ function Mytabs() {
 
       <Tab.Navigator initialRouteName="Home">
         <Tab.Screen name="Home" options={{headerShown:false}} component={HomeScreen} />
-        <Tab.Screen name="Player" options={{headerShown:false}} component={PlayerScreen} />
+        <Tab.Screen name="Details" options={{headerShown:false}} component={DetailsScreen} />
+        <Tab.Screen name="Game" options={{headerShown:false}} component={GameScreen} />
       </Tab.Navigator>
 
   );

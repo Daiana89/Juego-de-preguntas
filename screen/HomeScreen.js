@@ -3,15 +3,23 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View ,TouchableOpacity ,Image } from 'react-native';
 import {SafeAreaView, TextInput} from 'react-native';
 
+import { UserContext } from '../UserContext';
+
 
 import {Alert, Modal, Pressable} from 'react-native';
 
-export default function Home( ) {
+export default function Home( {navigation}) {
   //MODAL
   const [modalVisible, setModalVisible] = useState(false);
   //TEXT INPUT
-  const [text, onChangeText] = React.useState('Useless Text');
-  const [number, onChangeNumber] = React.useState('');
+  const [inputValue, setInputValue] = useState('');
+  
+
+  // Control de voton 'LISTO'
+  const handlePress = () => {
+    setModalVisible(false); // Cierra el modal
+    navigation.navigate('Game'); // Redirige a la pantalla de detalles
+  };
 
     return (
         <View style={styles.container}>
@@ -46,16 +54,18 @@ export default function Home( ) {
             <SafeAreaView>
                 <TextInput
                   style={styles.input}
-                  onChangeText={onChangeNumber}
-                  value={number}
+                  value={inputValue}
+                  // onChangeText={number => setInputValue(number)}
+                  onChangeText={setInputValue}
                   placeholder="ingrese el number"
                   keyboardType="numeric"
                 />
+                
             </SafeAreaView>
-
+            <Text style={styles.text}>players: {inputValue}</Text>
             <Pressable
               style={[style.button, style.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={handlePress}>
               <Text style={style.textStyle}>Listo</Text>
             </Pressable>
           </View>
