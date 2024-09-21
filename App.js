@@ -1,13 +1,13 @@
 import React from "react";
 import Navigation from './Navigation';
-import Home from "./screen/HomeScreen";
-import { UserProvider } from './UserContext'; 
-
+import { PlayerProvider } from '../juego-de-previa/PlayerContext';
 
 export default function App( ) {
   return (
-    <Navigation />
-      
+    <PlayerProvider>
+         <Navigation />
+    </PlayerProvider>
+   
   );
 }
 
